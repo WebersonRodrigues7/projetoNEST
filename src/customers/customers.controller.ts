@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from "@nestjs/common";
+import { Body, Controller, Get, Post, Put, Param } from "@nestjs/common";
 import { CustomersService } from "./customers.service";
 import { UpsertDTO } from "./dto/upsert.dto"
 // @ -> é um decorator
@@ -11,14 +11,20 @@ export class CustomersController {
     constructor(private readonly customersService: CustomersService) {}
     
     @Get()
-    showAll() {
+    async showAll() {
+        let customers = await this.customersService.get()
         return {
-            'customers': this.customersService.get()
+            'customers': customers
         }
     }
 
     @Post()
     create(@Body() bodyCustomer: UpsertDTO) {
         return this.customersService.create(bodyCustomer);
+    }
+
+    @Put('id')
+    update(@Param('id') customerID: number, @Body() customerBody: UpsertDTO){
+        return this.customersService.update(customerID, customerBody)
     }
 }
