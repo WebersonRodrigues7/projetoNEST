@@ -46,10 +46,11 @@ export class ProductsService {
         };
     }
 
-    delete(id: number) {
-        this.products = this.products.filter((p) => p.id != id);
+    async delete(id: number) {
+        await this.productsRepository.delete(id)
         return {
-            "message": "Produto removido!"
+            "message": "Produto deletado"
+        }
+
         }
     }
-}
