@@ -35,11 +35,17 @@ export class CustomersService {
         "message": "Salvo com sucesso"
      };
    }
-   async update(id: number, product: UpsertDTO) {
-           
-           await this.customerRepository.update(id, product)
+   async update(id: number, customer: UpsertDTO) {
+           await this.customerRepository.update(id, customer)
            return {
-               "message": "Produto Atualizado!"
+               "message": "Cliente Atualizado!"
            };
-       }
+       } 
+
+   async delete(id:number){
+      await this.customerRepository.delete(id)
+      return {
+         "message": "Cliente deletado"
+      };
+   }
 }
