@@ -1,3 +1,4 @@
+import { Employee } from './src/employee/employee.entity';
 import { Customer } from './src/customers/customers.entity';
 import { Product } from './src/products/products.entity';
 import { DataSource } from 'typeorm';
@@ -10,6 +11,6 @@ export default new DataSource({ // criando as imigrações
   username: 'root',
   password: '',
   database: 'curso',
-  entities: [Product, Customer],
+  entities: [Product, Customer, Employee],
   migrations: ['dist/migrations/*.js'],
 });

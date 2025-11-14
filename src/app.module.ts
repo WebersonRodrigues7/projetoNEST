@@ -4,6 +4,8 @@ import { AppService } from './app.service';
 import { ProductsModule } from './products/products.module';
 import { CustomersModule } from './customers/customers.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { EmployeeModule } from './employee/employee.module';
+import { VendasModule } from './vendas/vendas.module';
 
 
 @Module({
@@ -19,7 +21,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       synchronize: false,  // importante! false em produção
       logging: true,
     }),
-    ProductsModule, CustomersModule],
+    ProductsModule, CustomersModule, EmployeeModule, VendasModule],
   controllers: [AppController],
   providers: [AppService],
 })
