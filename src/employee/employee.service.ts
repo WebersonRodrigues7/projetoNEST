@@ -31,7 +31,7 @@ export class EmployeeService {
             }
 
             await this.employeeRepository.update(id, employee)
-
+            
             return {
                 message: "Funcionário Atualizado"
             }
