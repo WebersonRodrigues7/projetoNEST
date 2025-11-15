@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Vendas } from "src/vendas/vendas.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Employee{
@@ -6,9 +7,21 @@ export class Employee{
     id: number;
 
     @Column()
+    name: string
+
+    @Column()
+    cpf:number
+
+    @Column()
     email: string;
 
     @Column()
-    password: string;
+    phone: number;
+
+    @Column()
+    salary: string;
+
+    @OneToMany(() => Vendas, (vendas) => vendas.employee)
+    vendas: Vendas[]
 
 }

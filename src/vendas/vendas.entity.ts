@@ -1,5 +1,6 @@
-import { Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Employee } from "../employee/employee.entity";
+import { Customer } from "src/customers/customers.entity";
 
 @Entity()
 export class Vendas {
@@ -9,9 +10,11 @@ export class Vendas {
     @Column()
     notafiscal: string;
 
-    @OneToMany(() => Employee, (employee) => employee.id)
-    @JoinColumn({name: 'EmployeeID'})
+    @ManyToOne(() => Employee, (employee) => employee.vendas)
     employee: Employee
 
-    
+    @ManyToOne(() => Customer, (customer) => customer.vendas)
+    customer: Customer
+
+    // @OneToMany(() => )
 }
