@@ -18,7 +18,7 @@ export class VendasService {
         await this.vendasRepository.save(newvenda)
 
         return {
-            message: "Vendas criadas"
+            message: "Venda criada"
         }
     }
 
@@ -31,6 +31,19 @@ export class VendasService {
 
         return {
             message: "Venda atualizada"
+        }
+    }
+
+    async delete(id:number){
+        const vendasfound = await this.vendasRepository.findOne({where: {id}})
+        if(!vendasfound){
+            throw new NotFoundException("Venda não encontrada")
+        }
+
+        await this.vendasRepository.delete(vendasfound)
+
+        return {
+            message: "Venda cancelada/excluída"
         }
     }
 }
